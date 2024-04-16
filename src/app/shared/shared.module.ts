@@ -5,7 +5,6 @@ import { MenuPageComponent } from './menu/pages/menu.component';
 import { RouterLink } from '@angular/router';
 import { PageNotFoundComponent } from './not-found/not-found.component';
 import { ThemeSwitchComponent } from './theme-switch/theme-switch.component';
-import { MegaMenuComponent } from './mega-menu/mega-menu.component';
 
 
 
@@ -14,7 +13,6 @@ import { MegaMenuComponent } from './mega-menu/mega-menu.component';
     MenuPageComponent,
     PageNotFoundComponent,
     ThemeSwitchComponent,
-    MegaMenuComponent,
   ],
   imports: [
     CommonModule,
@@ -24,7 +22,6 @@ import { MegaMenuComponent } from './mega-menu/mega-menu.component';
     MenuPageComponent,
     PageNotFoundComponent,
     ThemeSwitchComponent,
-    MegaMenuComponent,
   ]
 })
 export class SharedModule { }
