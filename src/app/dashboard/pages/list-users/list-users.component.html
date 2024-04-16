@@ -1,0 +1,37 @@
+<menu-nav></menu-nav>
+<breadcrumbs [items]="items"></breadcrumbs>
+<h2 class="text-3xl font-extrabold p-4">Listado de usuarios</h2>
+
+<tui-elastic-container class="container max-w-screen-xl mx-auto">
+
+  <table class="w-lg" tuiTable [columns]="columns">
+    <thead>
+      <tr tuiThGroup>
+        <th *tuiHead="'id'" tuiTh>Id</th>
+        <th *tuiHead="'username'" tuiTh>Username</th>
+        <th *tuiHead="'email'" tuiTh>Correo</th>
+        <th *tuiHead="'user asigned'" tuiTh>Usuario asignado</th>
+        <th *tuiHead="'role'" tuiTh>Rol</th>
+      </tr>
+    </thead>
+    <tbody tuiTbody>
+      <tr tuiTr *ngFor="let user of dataResponse.users; else: loading; empty: blank ">
+        <td *tuiCell="'id'" tuiTd>{{ user.id }}</td>
+        <td *tuiCell="'username'" tuiTd>{{ user.username }}</td>
+        <td *tuiCell="'email'" tuiTd>{{ user.email }}</td>
+        <td *tuiCell="'user asigned'" tuiTd>{{ user.userAsigned }}</td>
+        <td *tuiCell="'role'" tuiTd>{{ user.role.authority }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <tui-table-pagination [total]="total" [(page)]="dataResponse.currentPage"
+    [(size)]="dataResponse.totalPages"></tui-table-pagination>
+
+</tui-elastic-container>
+
+<ng-template #loading>
+  <tui-loader></tui-loader>
+</ng-template>
+<ng-template #blank>Sin datos</ng-template>
