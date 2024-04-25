@@ -1,0 +1,43 @@
+name: publish
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  create-docker-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.AUTH_TOKEN }}
+
+      - name: Build the Docker image
+        run: |
+          docker build -t ghcr.io/escihuvirtual-ui:latest .
+          docker push ghcr.io/escihuvirtual-ui:latest
+
+  deploy:
+    needs: create-docker-image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install sshpass
+        run: sudo apt-get install -y sshpass
+
+      - name: SSH into server
+        run: |
+          sshpass -p ${{ secrets.SSH_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
+          docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.AUTH_TOKEN }}
+          docker pull ghcr.io/escihuvirtual-ui:latest
+          docker stop escihuvirtual-ui
+          docker rm escihuvirtual-ui
+          docker run -d --rm -p 9191:9191 -ti --name escihuvirtual-ui ghcr.io/escihuvirtual-ui:latest
+          EOF
