@@ -22,8 +22,8 @@ jobs:
 
       - name: Build the Docker image
         run: |
-          docker build -t ghcr.io/josafatjimenezb/Managment-escihu-virtual-UI:latest .
-          docker push ghcr.io/josafatjimenezb/Managment-escihu-virtual-UI:latest
+          docker build -t ghcr.io/josafatjimenezb/managment-escihu-virtual-ui:latest .
+          docker push ghcr.io/josafatjimenezb/managment-escihu-virtual-ui:latest
 
   deploy:
     needs: create-docker-image
@@ -36,8 +36,8 @@ jobs:
         run: |
           sshpass -p ${{ secrets.SSH_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
           docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.AUTH_TOKEN }}
-          docker pull ghcr.io/josafatjimenezb/Managment-escihu-virtual-UI:latest
+          docker pull ghcr.io/josafatjimenezb/managment-escihu-virtual-ui:latest
           docker stop escihuvirtual-ui
           docker rm escihuvirtual-ui
-          docker run -d --rm -p 9191:9191 -ti --name escihuvirtual-ui ghcr.io/josafatjimenezb/Managment-escihu-virtual-UI:latest
+          docker run -d --rm -p 9191:9191 -ti --name escihuvirtual-ui ghcr.io/josafatjimenezb/managment-escihu-virtual-ui:latest
           EOF
