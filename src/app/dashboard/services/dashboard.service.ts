@@ -9,12 +9,14 @@ import { environment } from "src/app/environment/environment.prod";
 })
 export class DashboardService {
 
-  constructor(private readonly http: HttpClient) {}
+  constructor(private readonly http: HttpClient) {
+    this.getUsers(10);
+  }
 
   path = environment.API_URL;
 
   getUsers(pageSize: number): Observable<UserList> {
-    return this.http.get<UserList>(`${this.path}/api/v1/admin/list_users/${pageSize}`);
+    return this.http.get<UserList>(`${this.path}/api/v1/admin/list_users/${pageSize}`)
   }
 
 

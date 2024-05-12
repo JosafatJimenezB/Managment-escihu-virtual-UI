@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from "@angular/core";
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit } from "@angular/core";
 import { UserDetailsList, UserList } from "../../interfaces/user.class";
 import { DashboardService } from "../../services/dashboard.service";
 import { User } from "src/app/auth/Interfaces/model";
@@ -27,47 +27,38 @@ export class ListUsersPageComponent implements OnInit, OnDestroy{
     }
   ]
 
-  users: UserDetailsList[] = [];
-
-  total: number = 0;
-
   dataResponse: UserList = new UserList();
+
+  users: UserDetailsList[] = [];
 
   constructor(
     private readonly dashboardService: DashboardService,
+    private readonly cdRed: ChangeDetectorRef,
   ) {
-    this.getUsers();
-
   }
 
   ngOnInit(): void {
-    this.getUsers();
-    if(this.users.length === 0) {
-      this.getUsers();
-    }
+    this.getUsers()
   }
 
   ngOnDestroy(): void {
-    this.users = [];
     this.dataResponse = new UserList();
     console.log('destroyed')
   }
 
-  async getUsers(): Promise<void> {
+  getUsers(): void {
     this.dashboardService.getUsers(10).subscribe(
-      (data: UserList) => {
-        console.log(data)
-        this.users = data.users;
-        this.dataResponse = data;
-        this.total = data.totalPages;
-        console.log('usuarios segun asignados', this.users)
-        console.log('objecto de respuesta', this.dataResponse)
-
+      (response: UserList) => {
+        console.log(response)
+        this.dataResponse = response;
+        this.users = response.users;
+        this.cdRed.detectChanges();
+        console.log(this.users)
       },
-      (error: any) => {
-        console.error('Error fetching users', error);
+      (error) => {
+        console.log('Error: ', error);
       }
-    );
+    )
   }
 
 }

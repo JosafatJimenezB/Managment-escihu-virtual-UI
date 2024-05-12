@@ -1,8 +1,8 @@
 <menu-nav></menu-nav>
-<breadcrumbs [items]="items"></breadcrumbs>
-<h2 class="text-3xl font-extrabold p-4">Listado de usuarios</h2>
 
 <tui-elastic-container class="container max-w-screen-xl mx-auto">
+  <breadcrumbs [items]="items"></breadcrumbs>
+  <h2 class="text-3xl font-extrabold pt-4">Listado de usuarios</h2>
 
   <table class="w-lg" tuiTable [columns]="columns">
     <thead>
@@ -15,7 +15,7 @@
       </tr>
     </thead>
     <tbody tuiTbody>
-      <tr tuiTr *ngFor="let user of dataResponse.users; else: loading; empty: blank ">
+      <tr tuiTr *ngFor="let user of dataResponse.users; empty: blank ">
         <td *tuiCell="'id'" tuiTd>{{ user.id }}</td>
         <td *tuiCell="'username'" tuiTd>{{ user.username }}</td>
         <td *tuiCell="'email'" tuiTd>{{ user.email }}</td>
@@ -26,12 +26,12 @@
   </table>
 
 
-  <tui-table-pagination [total]="total" [(page)]="dataResponse.currentPage"
+  <tui-table-pagination [total]="dataResponse.totalElements" [(page)]="dataResponse.currentPage"
     [(size)]="dataResponse.totalPages"></tui-table-pagination>
 
 </tui-elastic-container>
 
-<ng-template #loading>
-  <tui-loader></tui-loader>
+<ng-template #blank>
+  <no-content title="Sin usuarios" message="No hay nada que ver por aquí." #blank>
+  </no-content>
 </ng-template>
-<ng-template #blank>Sin datos</ng-template>
