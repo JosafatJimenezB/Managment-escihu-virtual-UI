@@ -9,7 +9,7 @@ import { AuthService } from "src/app/auth/services/auth.service";
 export class MenuPageComponent {
 
   constructor(
-    private readonly authService: AuthService,
+    private authService: AuthService,
     private readonly router: Router,
   ){}
 
