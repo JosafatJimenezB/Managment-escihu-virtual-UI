@@ -74,7 +74,8 @@
           "builder": "@ngx-env/builder:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Managment-Escihu-Virtual-front:build:production"
+              "browserTarget": "Managment-Escihu-Virtual-front:build:production",
+              "proxyConfig": "proxy.config.json"
             },
             "development": {
               "browserTarget": "Managment-Escihu-Virtual-front:build:development"
