@@ -100,11 +100,9 @@ export class LoginPageComponent implements OnInit{
     let isChecked = checkRemember.checked;
 
     if (isChecked) {
-      console.log('simon si entro')
       localStorage.setItem('rememberMe', 'true');
       localStorage.setItem('credentials', JSON.stringify(this.credentials));
     } else {
-      console.log('nel no entro')
       localStorage.removeItem('rememberMe');
       localStorage.removeItem('credentials');
     }

@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Credentials } from "../Interfaces/model";
 import { map } from "rxjs";
 import { environment } from "src/app/environment/environment.prod";
+import { CookieService } from "ngx-cookie-service";
 
 @Injectable({
   providedIn: 'root'
@@ -12,23 +13,12 @@ export class AuthService {
    API_URL = environment.API_URL;
 
   constructor(
-    private readonly http: HttpClient
+    private readonly http: HttpClient,
+    private cookieService: CookieService
   ) {
   }
 
-  private httpOptions() {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`
-    })
-
-    return { headers };
-  }
-
   login(credentials: Credentials) {
-
-    console.log(credentials)
 
     return this.http.post<Credentials>(`${this.API_URL}/api/v1/auth/login`, credentials,{
       observe: 'response'
@@ -36,24 +26,22 @@ export class AuthService {
 
       const body = response.body;
 
-      localStorage.setItem('token', body.token);
-      localStorage.setItem('username', body.username);
-      localStorage.setItem('userAsigned', body.userAsigned);
-      localStorage.setItem('role', body.role.authority)
+      this.cookieService.set('token', body.token);
+      this.cookieService.set('username', body.username);
+      this.cookieService.set('userAsigned', body.userAsigned);
+      this.cookieService.set('role', body.role.authority);
+      this.cookieService.set('token', body.token);
 
       return body;
     }))
   }
 
   getProfile() {
-    return localStorage.getItem('username');
+    return this.cookieService.get('username');
   }
 
   logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('username');
-    localStorage.removeItem('userAsigned');
-    localStorage.removeItem('role');
+    this.cookieService.deleteAll();
   }
 
 

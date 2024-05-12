@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AuthRoutingModule } from './auth-routing.module';
 
@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { TuiAlertModule, TuiNotificationModule } from '@taiga-ui/core';
 import { RouterLink } from '@angular/router';
 import { TuiCheckboxModule } from '@taiga-ui/kit';
+import { AuthInterceptor } from './helpers/auth.interceptor';
 
 
 
@@ -29,6 +30,7 @@ import { TuiCheckboxModule } from '@taiga-ui/kit';
     RouterLink
   ],
   providers: [
+
   ]
 })
 export class AuthModule { }

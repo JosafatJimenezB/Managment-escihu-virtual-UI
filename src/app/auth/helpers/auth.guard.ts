@@ -3,19 +3,21 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
 
-  token = localStorage.getItem('token');
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    ){}
+    private readonly cookieService: CookieService
+  ){}
 
+  token = this.cookieService.get('token');
 
     canActivate(
       route: ActivatedRouteSnapshot,
