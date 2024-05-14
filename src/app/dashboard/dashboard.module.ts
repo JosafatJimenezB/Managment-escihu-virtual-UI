@@ -18,7 +18,6 @@ import { TuiLoaderModule } from '@taiga-ui/core';
   declarations: [
     DashboardPageComponent,
     ListUsersPageComponent,
-    BreadcrumbsComponent,
   ],
   imports: [
     CommonModule,
@@ -29,7 +28,6 @@ import { TuiLoaderModule } from '@taiga-ui/core';
     TuiForModule,
     TuiTablePaginationModule,
     TuiTableModule,
-    TuiBreadcrumbsModule,
     TuiElasticContainerModule,
   ],
   exports: [

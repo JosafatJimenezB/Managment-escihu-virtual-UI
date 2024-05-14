@@ -12,6 +12,7 @@ import { AuthInterceptor } from "./auth/helpers/auth.interceptor";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { CookieService } from "ngx-cookie-service";
 import { NgHttpLoaderModule } from "ng-http-loader";
+import { LicenciaturaModule } from "./licenciatura/licenciatura.module";
 
 @NgModule({
   declarations: [
@@ -19,15 +20,16 @@ import { NgHttpLoaderModule } from "ng-http-loader";
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    NgHttpLoaderModule.forRoot(),
     AppRoutingModule,
     BrowserAnimationsModule,
     TuiRootModule,
-    AuthModule,
-    SharedModule,
     TuiThemeNightModule,
     TuiModeModule,
-    HttpClientModule,
-    NgHttpLoaderModule.forRoot(),
+    AuthModule,
+    LicenciaturaModule,
+    SharedModule,
 ],
   providers: [
     CookieService,

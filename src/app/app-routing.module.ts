@@ -13,6 +13,11 @@ const routes: Routes = [
     loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
     canActivate: [AuthGuard]
   },
+  {
+    path: 'licenciatura',
+    loadChildren: () => import('./licenciatura/licenciatura.module').then(m => m.LicenciaturaModule),
+    canActivate: [AuthGuard]
+  }
 ];
 
 @NgModule({
