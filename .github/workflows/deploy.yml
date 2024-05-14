@@ -36,8 +36,8 @@ jobs:
         run: |
           sshpass -p ${{ secrets.SSH_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << EOF
           docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.AUTH_TOKEN }}
-          docker pull ghcr.io/josafatjimenezb/managment-escihu-virtual-ui:latest
+          docker image rmi ghcr.io/josafatjimenezb/managment-escihu-virtual-ui:latest
+          docker pull ghcr.io/josafatjimenezb/managment-escihu-virtual-ui:latest -t latest
           docker stop escihuvirtual-ui
-          docker rm escihuvirtual-ui
           docker run -d --rm -p 9191:9191 -ti --name escihuvirtual-ui ghcr.io/josafatjimenezb/managment-escihu-virtual-ui:latest
           EOF
