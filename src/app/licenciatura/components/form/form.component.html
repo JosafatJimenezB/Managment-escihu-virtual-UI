@@ -1,6 +1,14 @@
-<form>
-  <h3 class="tui-form__header tui-form__header_margin-top_none">Formulario nueva licenciatura</h3>
-  <div class="tui-form__row">
-    <tui-input>Type email</tui-input>
-  </div>
+<form (ngSubmit)="emitForm()">
+  <tui-input type="text" tuiAutoFocus tuiTextfieldSize="m" name="name" id="name" [(ngModel)]="licenciaturaForm.name">
+    Nombre:
+  </tui-input>
+  <tui-input class="b-form" type="number" tuiTextfieldSize="m" name="code" id="code"
+    [(ngModel)]="licenciaturaForm.code">
+    Codigo:
+  </tui-input>
+  <p class="mt-3">
+    <button tuiButton size="s" type="submit">
+      Guardar
+    </button>
+  </p>
 </form>

@@ -9,6 +9,8 @@ import { RouterLinkActive } from '@angular/router';
 })
 export class LicenciaturasComponentPage implements OnInit, OnDestroy {
 
+  readonly columns = ['id', 'username', 'code', 'update', 'delete'];
+
   licenciaturas: Licenciatura[] = [];
 
   items = [
@@ -40,7 +42,18 @@ export class LicenciaturasComponentPage implements OnInit, OnDestroy {
     this.licenciaturaService.getAll().subscribe(
       (res) => {
         this.licenciaturas = res;
-        console.log(this.licenciaturas)
+      },
+      (err) => {
+        console.error(err);
+      }
+    );
+  }
+
+  deleteById(id: number): void {
+    this.licenciaturaService.deleteById(id).subscribe(
+      (res) => {
+        console.log(res)
+        this.getLicenciaturas();
       },
       (err) => {
         console.error(err);

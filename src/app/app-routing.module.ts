@@ -14,7 +14,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'licenciatura',
+    path: 'licenciaturas',
     loadChildren: () => import('./licenciatura/licenciatura.module').then(m => m.LicenciaturaModule),
     canActivate: [AuthGuard]
   }

@@ -15,9 +15,16 @@ export class DashboardService {
 
   path = environment.API_URL;
 
-  getUsers(pageSize: number): Observable<UserList> {
-    return this.http.get<UserList>(`${this.path}/api/v1/admin/list_users/${pageSize}`)
-  }
+  getUsers(pageSize: number, currentPage?: number): Observable<UserList> {
 
+    if (pageSize === 0 || pageSize === null){
+      pageSize = 10;
+    }
+
+    if (currentPage === 0 || currentPage === undefined || currentPage === null){
+      currentPage = 0;
+    }
+    return this.http.get<UserList>(`${this.path}/api/v1/admin/list_users?pageSize=${pageSize}&currentPage=${currentPage}`)
+  }
 
 }
