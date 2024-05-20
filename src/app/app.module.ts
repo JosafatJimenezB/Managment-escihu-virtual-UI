@@ -13,6 +13,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { CookieService } from "ngx-cookie-service";
 import { NgHttpLoaderModule } from "ng-http-loader";
 import { LicenciaturaModule } from "./licenciatura/licenciatura.module";
+import { CyclesModule } from "./cycles/cycles.module";
+import { ClassroomsModule } from "./classrooms/classrooms.module";
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { LicenciaturaModule } from "./licenciatura/licenciatura.module";
     TuiModeModule,
     AuthModule,
     LicenciaturaModule,
+    CyclesModule,
+    ClassroomsModule,
     SharedModule,
 ],
   providers: [

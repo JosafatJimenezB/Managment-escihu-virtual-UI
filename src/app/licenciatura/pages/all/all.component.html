@@ -1,11 +1,10 @@
 <menu-nav></menu-nav>
 <tui-elastic-container class="container max-w-screen-xl mx-auto">
   <breadcrumbs [items]="items"></breadcrumbs>
-  <h2 class="text-3xl font-extrabold pt-4">Licenciaturas</h2>
-
+  <h2 class="text-3xl font-extrabold pt-4 pb-4">Licenciaturas</h2>
 
   <lic-create-modal title="Nuevo registro" icon="fa-solid fa-plus mr-2" hint="Nueva licenciatura"></lic-create-modal>
-  <table class="w-full" tuiTable [columns]="columns" *ngIf="licenciaturas; else: blank">
+  <table class="w-full pt-4" tuiTable [columns]="columns" *ngIf="licenciaturas; else: blank">
     <thead>
       <tr tuiThGroup>
         <th *tuiHead="'id'" tuiTh>Id</th>

@@ -1,0 +1,10 @@
+<form (ngSubmit)="emitForm()">
+  <tui-input type="text" tuiAutoFocus tuiTextfieldSize="m" name="name" id="name" [(ngModel)]="cycleForm.name">
+    Nombre:
+  </tui-input>
+  <p class="mt-3">
+    <button tuiButton size="s" type="submit">
+      Guardar
+    </button>
+  </p>
+</form>

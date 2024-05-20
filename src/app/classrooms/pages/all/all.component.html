@@ -1,0 +1,48 @@
+<menu-nav></menu-nav>
+<tui-elastic-container class="container max-w-screen-xl mx-auto">
+  <breadcrumbs [items]="items"></breadcrumbs>
+
+  <h2 class="text-3xl font-extrabold py-4">Salones</h2>
+
+  <classroom-create-modal title="Nuevo registro" hint="Nuevo salon"
+    icon="fa-solid fa-plus mr-2"></classroom-create-modal>
+  <table class="w-full pt-4" tuiTable [columns]="columns">
+    <thead>
+      <tr tuiThGroup>
+        <th *tuiHead="'id'" tuiTh>Id</th>
+        <th *tuiHead="'name'" tuiTh>Nombre</th>
+        <th *tuiHead="'description'" tuiTh>Descripción</th>
+        <th *tuiHead="'createdAt'" tuiTh>Fecha de creación</th>
+        <th *tuiHead="'updatedAt'" tuiTh>Fecha de actualización</th>
+        <th *tuiHead="'update'" tuiTh>Actualizar</th>
+      </tr>
+    </thead>
+    <tbody tuiTbody>
+      <tr tuiTr *ngFor="let classroom of classroomResponse.content; empty: blank ">
+        <td *tuiCell="'id'" tuiTd>{{ classroom.id }}</td>
+        <td *tuiCell="'name'" tuiTd>
+          <a class="text-blue-800 font-bold" tuiLink [routerLink]="['/ciclos-escolares/',classroom.id]">
+            {{ classroom.name }}
+          </a>
+        </td>
+        <td *tuiCell="'description'" tuiTd>{{ classroom.description }}</td>
+        <td *tuiCell="'createdAt'" tuiTd>{{ classroom.createdAt | date: 'dd/MM/yyyy h:mm:ss a' }}</td>
+        <td *tuiCell="'updatedAt'" tuiTd>{{ classroom.updatedAt | date: 'dd/MM/yyyy h:mm:ss a' }}</td>
+        <td *tuiCell="'update'" tuiTd>
+          <classroom-update-modal hint="Actualizar salon" icon="fa-solid fa-edit"
+            [id]="classroom.id"></classroom-update-modal>
+        </td>
+      </tr>
+    </tbody>
+
+  </table>
+
+  <tui-table-pagination class="mt-4" [total]="classroomResponse.totalElements" [(page)]="currentPage"
+    [(size)]="pageSize" (pageChange)="onPageChange($event)" (sizeChange)="onSizeChange($event)"></tui-table-pagination>
+
+</tui-elastic-container>
+
+<ng-template #blank>
+  <no-content title="Sin salones" message="No hay nada que ver por aquí." #blank>
+  </no-content>
+</ng-template>
