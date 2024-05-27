@@ -15,6 +15,7 @@ import { NgHttpLoaderModule } from "ng-http-loader";
 import { LicenciaturaModule } from "./licenciatura/licenciatura.module";
 import { CyclesModule } from "./cycles/cycles.module";
 import { ClassroomsModule } from "./classrooms/classrooms.module";
+import { UserModule } from "./user/user.module";
 
 @NgModule({
   declarations: [
@@ -30,9 +31,10 @@ import { ClassroomsModule } from "./classrooms/classrooms.module";
     TuiThemeNightModule,
     TuiModeModule,
     AuthModule,
-    LicenciaturaModule,
     CyclesModule,
     ClassroomsModule,
+    LicenciaturaModule,
+    UserModule,
     SharedModule,
 ],
   providers: [

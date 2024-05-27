@@ -58,6 +58,7 @@ export class CreateModalComponent implements OnInit {
             })
             .subscribe();
         this.router.navigate(['/ciclos-escolares']);
+        window.location.reload();
       },
       (error) => {
         console.log(error)

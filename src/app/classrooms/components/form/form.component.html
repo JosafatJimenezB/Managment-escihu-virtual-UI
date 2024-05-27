@@ -1,8 +1,9 @@
 <form (ngSubmit)="emitForm()">
-  <tui-input type="text" tuiAutoFocus tuiTextfieldSize="m" name="name" id="name" [(ngModel)]="classroomForm.name">
+  <tui-input tuiAutoFocus tuiTextfieldSize="m" name="name" id="name" [(ngModel)]="classroomForm.name">
     Nombre:
   </tui-input>
-  <tui-input type="text" tuiAutoFocus tuiTextfieldSize="m" name="description" id="description"
+  <br>
+  <tui-input tuiAutoFocus tuiTextfieldSize="m" name="description" id="description"
     [(ngModel)]="classroomForm.description">
     Descripción:
   </tui-input>

@@ -74,6 +74,7 @@ export class ClassroomUpdateModalComponent implements OnInit {
                 autoClose: true,
             })
             .subscribe();
+            window.location.reload();
       },
       (error) => {
         console.log(error)

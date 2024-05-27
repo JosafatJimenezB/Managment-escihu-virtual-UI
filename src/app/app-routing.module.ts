@@ -27,6 +27,16 @@ const routes: Routes = [
     path: 'salones',
     loadChildren: () => import('./classrooms/classrooms.module').then(m => m.ClassroomsModule),
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'docentes',
+    loadChildren: () => import('./teacher/teacher.module').then(m => m.TeacherModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'usuarios',
+    loadChildren: () => import('./user/user.module').then(m => m.UserModule),
+    canActivate: [AuthGuard]
   }
 ];
 

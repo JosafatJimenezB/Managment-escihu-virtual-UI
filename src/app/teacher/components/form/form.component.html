@@ -1,0 +1,168 @@
+<form (ngSubmit)="emitForm()" class="b-form">
+
+  <div class="tui-col_12">
+    <div class="tui-form__field-note">Datos del docente</div>
+    <div class="tui-form__row tui-form__row_multi-fields">
+      <div class="tui-form__multi-field">
+        <tui-input name="name" id="name" [(ngModel)]="teacherForm.nombre" required="true">
+          Nombre
+          <span class="tui-required"></span>
+        </tui-input>
+      </div>
+      <div class="tui-form__multi-field">
+        <tui-input name="apellidoPaterno" id="apellidoPaterno" [(ngModel)]="teacherForm.apellidoPaterno"
+          required="true">
+          Apellido Paterno
+          <span class="tui-required"></span>
+        </tui-input>
+      </div>
+      <div class="tui-form__multi-field">
+        <tui-input name="apellidoMaterno" id="apellidoMaterno" [(ngModel)]="teacherForm.apellidoMaterno"
+          [required]="true">
+          Apellido Materno
+          <span class="tui-required"></span>
+        </tui-input>
+      </div>
+    </div>
+
+
+    <div class="tui-form__row tui-form__row_multi-fields">
+      <div class="tui-form__multi-field">
+        <tui-input name="curp" id="curp" maxlength="18" [(ngModel)]="teacherForm.curp">
+          CURP
+        </tui-input>
+        <div *ngIf="errorMessage">{{ errorMessage }}</div>
+
+      </div>
+      <div class="tui-form__multi-field">
+        <tui-input-date name="fechaNacimiento" id="fechaNacimiento" [(ngModel)]="teacherForm.fechaNacimiento">
+          Fecha Nacimiento
+        </tui-input-date>
+      </div>
+    </div>
+
+    <div class="tui-form__row tui-form__row_multi-fields">
+      <div class="tui-form__multi-field">
+        <tui-input name="correoPersonal" id="correoPersonal" maxlength="18" [(ngModel)]="teacherForm.correoPersonal">
+          Correo
+        </tui-input>
+      </div>
+      <div class="tui-form__multi-field">
+        <tui-input name="nacionalidad" id="nacionalidad" [(ngModel)]="teacherForm.nacionalidad">
+          Nacionalidad
+        </tui-input>
+      </div>
+      <div class="tui-form__multi-field">
+        <tui-select [(ngModel)]="teacherForm.sexo" name="sexo" id="sexo">
+          Sexo
+          <select tuiSelect [items]="sexoItems"></select>
+        </tui-select>
+      </div>
+    </div>
+
+    <div class="tui-form__row tui-form__row_multi-fields">
+      <div class="tui-form__multi-field">
+        <tui-select [(ngModel)]="teacherForm.estadoCivil" name="estadoCivil" id="estadoCivil">
+          Estado Civil
+          <select tuiSelect [items]="estadoCivilItems"></select>
+        </tui-select>
+      </div>
+      <div class="tui-form__multi-field">
+        <tui-input name="tipoSangre" id="tipoSangre" [(ngModel)]="teacherForm.tipoSangre">
+          Tipo de sangre
+        </tui-input>
+      </div>
+    </div>
+
+    <div class="tui-form__field-note my-2">Area academica</div>
+    <div class="tui-form__row tui-form__row_multi-fields">
+      <div class="tui-form__multi-field">
+        <tui-input name="gradoEstudios" id="gradoEstudios" [(ngModel)]="teacherForm.gradoEstudios">
+          Grado de estudios
+        </tui-input>
+      </div>
+      <div class="tui-form__multi-field">
+        <tui-input name="areaConocimientos" id="areaConocimientos" [(ngModel)]="teacherForm.areaConocimientos">
+          Area de conocimiento
+        </tui-input>
+      </div>
+    </div>
+
+    <div class="tui-form__row tui-form__row_multi-fields">
+      <div class="tui-form__multi-field">
+        <tui-input name="rfc" id="rfc" [(ngModel)]="teacherForm.rfc">
+          RFC
+        </tui-input>
+      </div>
+      <div class="tui-form__multi-field">
+        <tui-input name="cedulaProfesional" id="cedulaProfesional" [(ngModel)]="teacherForm.cedulaProfesional">
+          Cedula Profesional
+        </tui-input>
+      </div>
+      <div class="tui-form__multi-field">
+        <tui-select [(ngModel)]="teacherForm.statusDocente" name="statusDocente" id="statusDocente">
+          Status
+          <select tuiSelect [items]="statusTeacherItems"></select>
+        </tui-select>
+      </div>
+    </div>
+
+    <div class="tui-form__field-note my-2">Dirección</div>
+    <div class="tui-form__row tui-form__row_multi-fields">
+      <div class="tui-form__multi-field">
+        <tui-input name="direccion" id="direccion" [(ngModel)]="teacherForm.direccion.direccion">
+          Calle
+        </tui-input>
+      </div>
+      <div class="tui-form__multi-field">
+        <tui-input name="colonia" id="colonia" [(ngModel)]="teacherForm.direccion.colonia">
+          Colonia
+        </tui-input>
+      </div>
+    </div>
+
+    <div class="tui-form__row tui-form__row_multi-fields">
+      <div class="tui-form__multi-field">
+        <tui-input name="numeroInterior" id="numeroInterior" [(ngModel)]="teacherForm.direccion.numeroInterior">
+          Numero Interior
+        </tui-input>
+      </div>
+      <div class="tui-form__multi-field">
+        <tui-input name="numeroExterior" id="numeroExterior" [(ngModel)]="teacherForm.direccion.numeroExterior">
+          Numero Exterior
+        </tui-input>
+      </div>
+      <div class="tui-form__multi-field">
+        <tui-input name="cp" id="cp" [(ngModel)]="teacherForm.direccion.cp">
+          CP
+        </tui-input>
+      </div>
+    </div>
+
+
+    <div class="tui-form__row tui-form__row_multi-fields">
+      <div class="tui-form__multi-field">
+        <tui-input name="estado" id="estado" [(ngModel)]="teacherForm.direccion.estado">
+          Estado
+        </tui-input>
+      </div>
+      <div class="tui-form__multi-field">
+        <tui-input name="localidad" id="localidad" [(ngModel)]="teacherForm.direccion.localidad">
+          Localidad
+        </tui-input>
+      </div>
+      <div class="tui-form__multi-field">
+        <tui-input name="municipio" id="municipio" [(ngModel)]="teacherForm.direccion.municipio">
+          Municipio
+        </tui-input>
+      </div>
+    </div>
+  </div>
+
+
+  <p class="mt-3">
+    <button tuiButton size="s" type="submit">
+      Guardar
+    </button>
+  </p>
+</form>

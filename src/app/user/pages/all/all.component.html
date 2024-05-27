@@ -1,0 +1,47 @@
+<menu-nav></menu-nav>
+<tui-elastic-container class="container max-w-screen-xl mx-auto">
+  <breadcrumbs [items]="items"></breadcrumbs>
+  <h2 class="text-3xl font-extrabold py-4">Usuarios</h2>
+
+  <table class="w-full pt-4" tuiTable [columns]="columns">
+    <thead>
+      <tr tuiThGroup>
+        <th *tuiHead="'id'" tuiTh>Id</th>
+        <th *tuiHead="'username'" tuiTh>Username</th>
+        <th *tuiHead="'email'" tuiTh>Email</th>
+        <th *tuiHead="'role'" tuiTh>Rol</th>
+        <th *tuiHead="'userAsigned'" tuiTh>Usuario Asignado</th>
+        <th *tuiHead="'update'" tuiTh>Actualizar</th>
+        <th *tuiHead="'delete'" tuiTh>Eliminar</th>
+      </tr>
+    </thead>
+    <tbody tuiTbody>
+      <tr tuiTr *ngFor="let user of userResponse.content; empty: blank">
+        <td *tuiCell="'id'" tuiTd> {{ user.id }} </td>
+        <td *tuiCell="'username'" tuiTd>
+          <a class="underline" tuiLink [routerLink]="['/usuarios/user/', user.id, 'asigned', user.userAsigned]">
+            {{ user.username }}
+          </a>
+        </td>
+        <td *tuiCell="'email'" tuiTd> {{ user.email }} </td>
+        <td *tuiCell="'role'" tuiTd> {{ user.role.authority }} </td>
+        <td *tuiCell="'userAsigned'" tuiTd> {{ user.userAsigned }} </td>
+        <td *tuiCell="'update'" tuiTd></td>
+        <td *tuiCell="'delete'" tuiTd>
+          <button appearance="accent" tuiButton size="s" tuiHint="Eliminar cuenta de usuario" tuiHintDirection="top">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <tui-table-pagination class="mt-4" [total]="userResponse.totalElements" [(page)]="currentPage" [(size)]="pageSize"
+    (pageChange)="onPageChange($event)" (sizeChange)="onSizeChange($event)"></tui-table-pagination>
+
+</tui-elastic-container>
+
+<ng-template #blank>
+  <no-content title="Sin usuarios" message="No hay nada que ver por aquí." #blank>
+  </no-content>
+</ng-template>

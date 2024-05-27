@@ -1,16 +1,15 @@
-import { ChangeDetectionStrategy, Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, inject, Inject, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TuiAlertService, TuiDialogService } from '@taiga-ui/core';
-import { Licenciatura } from '../../classes/licenciatura.class';
-import { LicenciaturaService } from '../../services/licenciatura.service';
-import { Router } from '@angular/router';
+import { CreateAttendance } from '../../classes/attendance.class';
+import { AttendanceService } from '../../services/attendance.service';
 
 @Component({
-  selector: 'lic-create-modal',
-  templateUrl: 'create-modal.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'user-attendance-create-modal',
+  templateUrl: 'create.component.html'
 })
 
-export class CreateModalComponent implements OnInit {
+export class UserAttendanceCreateModalComponent implements OnInit {
 
   @Input() title: string = '';
 
@@ -18,12 +17,17 @@ export class CreateModalComponent implements OnInit {
 
   @Input() hint: string = '';
 
+  private attendanceService = inject(AttendanceService);
+
+  private route = inject(ActivatedRoute);
+
+  userId: number = this.route.snapshot.params['userId'];
+
   constructor(
     @Inject(TuiAlertService)
     private readonly alerts: TuiAlertService,
     @Inject(TuiDialogService)
     private readonly dialogs: TuiDialogService,
-    private readonly licenciaturaService: LicenciaturaService,
     private readonly router: Router,
   ) { }
 
@@ -35,10 +39,11 @@ export class CreateModalComponent implements OnInit {
     this.open = true;
   }
 
-  registerLicenciatura(licenciatura: Licenciatura): void {
+  registerAttendance(attendance: CreateAttendance): void {
 
+    attendance.userId = this.userId;
 
-    if(licenciatura.name == '' || licenciatura.name == null) {
+    if( !attendance.userId || !attendance.typeAttendace ) {
       this.alerts
           .open('Todos los campos son requeridos', {
               label: 'Oh oh',
@@ -47,35 +52,30 @@ export class CreateModalComponent implements OnInit {
           })
           .subscribe();
       return;
-
     }
 
-
-    this.licenciaturaService.create(licenciatura).subscribe(
+    this.attendanceService.create(attendance).subscribe(
       (res) => {
         console.log(res)
         this.open = false;
         this.alerts
-            .open('Licenciatura creada con éxito', {
+            .open('Asistencia registrada con éxito', {
                 status: 'success',
                 autoClose: true,
             })
             .subscribe();
-        this.router.navigate(['/licenciaturas']);
-        window.location.reload();
+            window.location.reload();
       },
       (error) => {
-        console.log(error)
-        this.open = false;
         this.alerts
-            .open('Error al crear la licenciatura', {
-                label: 'Ups! algo salió mal',
+            .open('Error al registrar la asistencia', {
+                label: 'Oh oh',
                 status: 'error',
                 autoClose: true,
             })
             .subscribe();
       }
-    );
-  }
+    )
 
+  }
 }

@@ -1,0 +1,24 @@
+<table class="w-full pt-4" tuiTable [columns]="columns">
+  <thead>
+    <tr tuiThGroup>
+      <th *tuiHead="'date'" tuiTh>Fecha</th>
+      <th *tuiHead="'typeAttendance'" tuiTh>Tipo de asistencia</th>
+    </tr>
+  </thead>
+  <tbody tuiTbody>
+    <tr tuiTr *ngFor="let attendance of attendaceResponse.content; empty: blank ">
+      <td *tuiCell="'date'" tuiTd>{{ attendance.date| date: 'dd/MM/yyyy h:mm:ss a' }}</td>
+      <td *tuiCell="'typeAttendance'" tuiTd>{{ attendance.typeAttendace }}</td>
+    </tr>
+  </tbody>
+
+</table>
+
+<tui-table-pagination class="mt-4" [total]="attendaceResponse.totalElements" [(page)]="currentPage" [(size)]="pageSize"
+  (pageChange)="onPageChange($event)" (sizeChange)="onSizeChange($event)"></tui-table-pagination>
+
+
+<ng-template #blank>
+  <no-content title="Sin asistencias" message="No hay nada que ver por aquí." #blank>
+  </no-content>
+</ng-template>
