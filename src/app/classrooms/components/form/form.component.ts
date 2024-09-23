@@ -19,6 +19,8 @@ export class ClassroomFormComponent implements OnInit {
   ngOnInit() { }
 
   emitForm(): void {
-    this.classroom.emit(this.classroomForm);
+    if (this.classroomForm.name && this.classroomForm.description){
+      this.classroom.emit(this.classroomForm);
+    }
   }
 }

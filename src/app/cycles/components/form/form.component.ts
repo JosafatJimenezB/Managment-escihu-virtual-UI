@@ -18,7 +18,7 @@ export class CycleFormComponent implements OnInit {
   ngOnInit() { }
 
   emitForm(): void {
-    // Verificamos que el nombre no esté vacío y que cumpla con las validaciones mínimas
+
     if (this.cycleForm.name && this.cycleForm.name.length >= 3) {
       this.cycle.emit(this.cycleForm);
     } else {
