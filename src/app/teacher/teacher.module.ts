@@ -12,6 +12,7 @@ import { TeacherFormComponent } from './components/form/form.component';
 import { TeacherCreateModalComponent } from './components/create/create-modal.component';
 import { TuiAlertModule, TuiButtonModule, TuiDialogModule, TuiHintModule } from '@taiga-ui/core';
 import { TuiTableModule, TuiTablePaginationModule } from '@taiga-ui/addon-table';
+import { NativeDateTransformerDirective } from './directives/native-date-transformer.directive';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { TuiTableModule, TuiTablePaginationModule } from '@taiga-ui/addon-table'
     TeacherMainPageComponent,
     TeacherFormComponent,
     TeacherCreateModalComponent,
+    NativeDateTransformerDirective,
   ],
   imports: [
     CommonModule,

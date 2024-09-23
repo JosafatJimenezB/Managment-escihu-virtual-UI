@@ -35,9 +35,11 @@
 
       </div>
       <div class="tui-form__multi-field">
-        <tui-input-date name="fechaNacimiento" id="fechaNacimiento" [(ngModel)]="teacherForm.fechaNacimiento">
+        <tui-input-date toNativeDate name="fechaNacimiento" id="fechaNacimiento"
+          [(ngModel)]="teacherForm.fechaNacimiento">
           Fecha Nacimiento
         </tui-input-date>
+        <!-- <input type="date" name="fechaNacimiento" id="fechaNacimiento" [(ngModel)]="teacherForm.fechaNacimiento"> -->
       </div>
     </div>
 

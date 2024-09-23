@@ -11,7 +11,7 @@ export class UserByIdPageComponent implements OnInit {
 
   private route = inject(ActivatedRoute);
 
-  userAsigned: number = this.route.snapshot.params['userAsignedId'];
+  userId: number = this.route.snapshot.params['userId'];
 
   items = [
     {
@@ -32,6 +32,6 @@ export class UserByIdPageComponent implements OnInit {
   ]
 
   ngOnInit() {
-    console.log(this.userAsigned)
+    console.log(this.userId)
   }
 }

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Teacher } from '../../classes/teacher.class';
 import { tuiInputDateOptionsProvider } from '@taiga-ui/kit';
 
@@ -7,10 +7,9 @@ import { tuiInputDateOptionsProvider } from '@taiga-ui/kit';
   templateUrl: 'form.component.html',
   styleUrls: ['./form.component.less'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [tuiInputDateOptionsProvider({nativePicker: true})],
 })
 
-export class TeacherFormComponent implements OnInit {
+export class TeacherFormComponent implements OnInit, OnDestroy {
 
   @Input() teacherForm = new Teacher();
 
@@ -21,11 +20,20 @@ export class TeacherFormComponent implements OnInit {
   statusTeacherItems = ['ACTIVO', 'INACTIVO']
 
   errorMessage: string | null = null;
+
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit(): void {
+    this.teacherForm.fechaNacimiento = new Date();
+  }
+
+  ngOnDestroy(): void {
+    this.teacherForm = new Teacher();
+  }
 
   emitForm(): void {
+    let formatDate = new Date(this.teacherForm.fechaNacimiento).toISOString();
+    this.teacherForm.fechaNacimiento = formatDate;
     this.teacher.emit(this.teacherForm);
   }
 

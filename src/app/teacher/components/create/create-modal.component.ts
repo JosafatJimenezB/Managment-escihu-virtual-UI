@@ -37,5 +37,40 @@ export class TeacherCreateModalComponent implements OnInit {
 
   registerTeacher(teacher: Teacher): void {
     console.log(teacher)
+
+    if(!teacher) {
+      this.alerts
+          .open('Todos los campos son requeridos', {
+              label: 'Oh oh',
+              status: 'warning',
+              autoClose: true,
+          })
+          .subscribe();
+      return;
+    }
+
+    this.teacherService.create(teacher).subscribe(
+      (res) => {
+        console.log(res)
+        this.alerts
+            .open(res.message, {
+                label: '¡Éxito!',
+                status: 'success',
+                autoClose: true,
+            })
+            .subscribe();
+            window.location.reload();
+      },
+      (error) => {
+        console.log(error)
+        this.alerts
+            .open(error.message, {
+                label: 'Oh oh',
+                status: 'error',
+                autoClose: true,
+            })
+            .subscribe();
+      }
+    )
   }
 }

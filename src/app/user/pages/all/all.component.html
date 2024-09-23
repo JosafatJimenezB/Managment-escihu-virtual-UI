@@ -19,7 +19,7 @@
       <tr tuiTr *ngFor="let user of userResponse.content; empty: blank">
         <td *tuiCell="'id'" tuiTd> {{ user.id }} </td>
         <td *tuiCell="'username'" tuiTd>
-          <a class="underline" tuiLink [routerLink]="['/usuarios/user/', user.id, 'asigned', user.userAsigned]">
+          <a class="underline" tuiLink [routerLink]="['/usuarios/user/', user.id, 'type', user.role.authority]">
             {{ user.username }}
           </a>
         </td>

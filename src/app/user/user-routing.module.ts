@@ -12,7 +12,7 @@ const routes: Routes = [
         component: UserMainPageComponent
       },
       {
-        path: 'user/:userId/asigned/:userAsignedId',
+        path: 'user/:userId/type/:userType',
         component: UserByIdPageComponent
       }
     ]
