@@ -1,6 +1,6 @@
 <tui-breadcrumbs>
   <ng-container *ngFor="let item of items">
-    <a *tuiItem tuiLink [routerLink]="item.routerLink">
+    <a *tuiItem tuiLink class="font-bold" [routerLink]="item.routerLink">
       {{ item.caption }}
     </a>
   </ng-container>

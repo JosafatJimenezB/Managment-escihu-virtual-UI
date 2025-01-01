@@ -14,8 +14,28 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'licenciatura',
+    path: 'licenciaturas',
     loadChildren: () => import('./licenciatura/licenciatura.module').then(m => m.LicenciaturaModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'ciclos-escolares',
+    loadChildren: () => import('./cycles/cycles.module').then(m => m.CyclesModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'salones',
+    loadChildren: () => import('./classrooms/classrooms.module').then(m => m.ClassroomsModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'docentes',
+    loadChildren: () => import('./teacher/teacher.module').then(m => m.TeacherModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'usuarios',
+    loadChildren: () => import('./user/user.module').then(m => m.UserModule),
     canActivate: [AuthGuard]
   }
 ];

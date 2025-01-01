@@ -1,0 +1,12 @@
+<menu-nav></menu-nav>
+<tui-elastic-container class="container max-w-screen-xl mx-auto">
+  <breadcrumbs [items]="items"></breadcrumbs>
+  <h2 class="text-3xl font-extrabold py-4">Usuario</h2>
+
+  <div class="container mx-auto">
+    <h3 class="text-2xl font-semibold py-3">Asistencias</h3>
+    <user-attendance-create-modal title="Nuevo registro" hint="Nueva asistencia"
+      icon="fa-solid fa-plus mr-2"></user-attendance-create-modal>
+    <user-attendance-by-id></user-attendance-by-id>
+  </div>
+</tui-elastic-container>

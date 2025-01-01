@@ -1,6 +1,7 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { TuiThemeNightService } from '@taiga-ui/addon-doc';
 import { TuiBrightness } from '@taiga-ui/core';
+import { initFlowbite } from 'flowbite';
 import { Spinkit } from 'ng-http-loader';
 
 @Component({
@@ -8,9 +9,9 @@ import { Spinkit } from 'ng-http-loader';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
 
-  title = 'Managment-Escihu-Virtual-front';
+  title = 'Escihu Virtual';
 
   public spinkit = Spinkit;
 
@@ -18,5 +19,9 @@ export class AppComponent {
 
   get mode(): TuiBrightness | null {
     return this.night.value ? 'onDark' : null;
+  }
+
+  ngOnInit(): void {
+    initFlowbite();
   }
 }
