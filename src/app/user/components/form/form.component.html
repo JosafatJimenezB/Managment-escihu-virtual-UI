@@ -1,0 +1,11 @@
+<form (ngSubmit)="emitForm()">
+  <tui-select [(ngModel)]="attendanceForm.typeAttendace" name="typeAttendance" id="typeAttendance">
+    Tipo de asistencia
+    <select tuiSelect [items]="items"></select>
+  </tui-select>
+  <p class="mt-3">
+    <button tuiButton size="s" type="submit">
+      Guardar
+    </button>
+  </p>
+</form>

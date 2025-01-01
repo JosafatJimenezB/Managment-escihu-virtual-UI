@@ -1,4 +1,4 @@
-<div class="font-[sans-serif] text-[#333]">
+<div class="font-[sans-serif]">
   <div class="min-h-screen flex flex-col items-center justify-center">
     <div
       class="grid md:grid-cols-2 items-center gap-4 max-w-6xl w-full p-4 m-4 shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-md">
@@ -11,7 +11,7 @@
             <label class="text-md font-bold block mb-2" for="username">Username</label>
             <div class="relative flex items-center">
               <input name="username" id="username" type="text" required [(ngModel)]="credentials.username"
-                class="w-full text-sm border-b border-gray-300 focus:border-[#333] px-2 py-3 outline-none"
+                class="w-full text-sm border-b text-black border-gray-300 focus:border-[#333] px-2 py-3 outline-none"
                 placeholder="Enter email" />
               <svg xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb"
                 class="w-[18px] h-[18px] absolute right-2" viewBox="0 0 682.667 682.667">
@@ -35,7 +35,7 @@
             <label class="text-md font-bold block mb-2">Password</label>
             <div class="relative flex items-center">
               <input name="password" type={{viewPassword}} required [(ngModel)]="credentials.password"
-                class="w-full text-sm border-b border-gray-300 focus:border-[#333] px-2 py-3 outline-none"
+                class="w-full text-sm border-b text-black border-gray-300 focus:border-[#333] px-2 py-3 outline-none"
                 placeholder="Enter password" />
               <svg (click)="viewPasswordFunction()" xmlns="http://www.w3.org/2000/svg" fill="#bbb" stroke="#bbb"
                 class="w-[18px] h-[18px] absolute right-2 cursor-pointer" viewBox="0 0 128 128">

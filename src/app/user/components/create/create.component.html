@@ -1,0 +1,7 @@
+<button appearance="primary" class="font-bold my-2" size="xs" tuiButton tuiHint="{{ hint }}" tuiHintDirection="top"
+  type="button" (click)="showDialog()">
+  <i class="{{ icon }}"></i> {{ title }}
+</button>
+<ng-template let-observer [tuiDialogOptions]="{label: 'Registar Asistencia', size: 's'}" [(tuiDialog)]="open">
+  <user-attendance-form (attendance)="registerAttendance($event)"></user-attendance-form>
+</ng-template>

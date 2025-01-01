@@ -1,5 +1,43 @@
 <menu-nav></menu-nav>
-<breadcrumbs></breadcrumbs>
-<div class="tui-container">
-  <h3>licenciaturas</h3>
-</div>
+<tui-elastic-container class="container max-w-screen-xl mx-auto">
+  <breadcrumbs [items]="items"></breadcrumbs>
+  <h2 class="text-3xl font-extrabold pt-4 pb-4">Licenciaturas</h2>
+
+  <lic-create-modal title="Nuevo registro" icon="fa-solid fa-plus mr-2" hint="Nueva licenciatura"></lic-create-modal>
+  <table class="w-full pt-4" tuiTable [columns]="columns" *ngIf="licenciaturas; else: blank">
+    <thead>
+      <tr tuiThGroup>
+        <th *tuiHead="'id'" tuiTh>Id</th>
+        <th *tuiHead="'username'" tuiTh>Licenciatura</th>
+        <th *tuiHead="'code'" tuiTh>Código</th>
+        <th *tuiHead="'update'" tuiTh>Actualizar</th>
+        <th *tuiHead="'delete'" tuiTh>Eliminar</th>
+      </tr>
+    </thead>
+    <tbody tuiTbody>
+      <tr tuiTr *ngFor="let licenciatura of licenciaturas; empty: blank ">
+        <td *tuiCell="'id'" tuiTd>{{ licenciatura.id }}</td>
+        <td *tuiCell="'username'" tuiTd>{{ licenciatura.name }}</td>
+        <td *tuiCell="'code'" tuiTd>{{ licenciatura.code }}</td>
+        <td *tuiCell="'update'" tuiTd>
+          <lic-update-modal icon="fa-solid fa-pen-to-square" hint="Actualizar licenciatura"
+            [id]="licenciatura.id"></lic-update-modal>
+        </td>
+        <td *tuiCell="'delete'" tuiTd>
+          <button appearance="accent" tuiButton size="s" tuiHint="Eliminar licenciatura" tuiHintDirection="top"
+            (click)="deleteById(licenciatura.id)">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+</tui-elastic-container>
+
+
+<ng-template #blank>
+  <no-content title="Sin licenciaturas" message="No hay nada que ver por aquí." #blank>
+  </no-content>
+</ng-template>

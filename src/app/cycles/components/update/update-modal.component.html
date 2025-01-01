@@ -1,0 +1,7 @@
+<button appearance="primary" class="font-bold my-2" size="xs" tuiButton tuiHint="{{ hint }}" tuiHintDirection="top"
+  type="button" (click)="showDialog()">
+  <i class="{{ icon }}"></i> {{ title }}
+</button>
+<ng-template let-observer [tuiDialogOptions]="{label: 'Nuevo Ciclo Escolar', size: 's'}" [(tuiDialog)]="open">
+  <cycle-form (cycle)="updateCycle($event)" [cycleForm]="cycle"></cycle-form>
+</ng-template>

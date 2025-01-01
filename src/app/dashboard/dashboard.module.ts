@@ -8,9 +8,8 @@ import {TuiTableModule} from '@taiga-ui/addon-table';
 
 import { DashboardPageComponent } from './pages/dashboard.component';
 import { ListUsersPageComponent } from './pages/list-users/list-users.component';
-import { BreadcrumbsComponent } from '../shared/breadcrumbs/breadcrumbs.component';
-import { TuiBreadcrumbsModule, TuiElasticContainerModule } from '@taiga-ui/kit';
-import { RouterLink } from '@angular/router';
+import { TuiBadgeModule, TuiElasticContainerModule } from '@taiga-ui/kit';
+import { RouterLink, RouterModule } from '@angular/router';
 import { TuiForModule } from '@taiga-ui/cdk';
 import { TuiLoaderModule } from '@taiga-ui/core';
 
@@ -22,12 +21,14 @@ import { TuiLoaderModule } from '@taiga-ui/core';
   imports: [
     CommonModule,
     DashboardRoutingModule,
+    RouterModule,
     RouterLink,
     SharedModule,
     TuiLoaderModule,
     TuiForModule,
     TuiTablePaginationModule,
     TuiTableModule,
+    TuiBadgeModule,
     TuiElasticContainerModule,
   ],
   exports: [

@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { AuthService } from "src/app/auth/services/auth.service";
 
@@ -6,7 +6,7 @@ import { AuthService } from "src/app/auth/services/auth.service";
   selector: 'menu-nav',
   templateUrl: './menu.component.html',
 })
-export class MenuPageComponent {
+export class MenuPageComponent{
 
   constructor(
     private authService: AuthService,
