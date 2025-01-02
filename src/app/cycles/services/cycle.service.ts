@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/app/environment/environment.prod';
 import { Observable } from 'rxjs';
 import { Cycle, CyclePagination } from '../classes/cycle.class';
+import { environment } from 'src/environments/environment';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class CycleService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) { }
-
-  private path = environment.API_URL;
+  private path = environment.api_url;
 
   getAll(currentPage: number, pageSize: number): Observable<CyclePagination> {
-    return this.httpClient.get<CyclePagination>(`${this.path}/api/v1/cycles/paginated?pageSize=${pageSize}&currentPage=${currentPage}`);
+    return this.httpClient.get<CyclePagination>(
+      `${this.path}/api/v1/cycles/paginated?pageSize=${pageSize}&currentPage=${currentPage}`
+    );
   }
 
   create(cycle: any): Observable<any> {
@@ -25,7 +26,7 @@ export class CycleService {
 
   updateById(id: number, cycle: Cycle): Observable<any> {
     return this.httpClient.put(`${this.path}/api/v1/cycles/${id}`, cycle, {
-      observe: 'response'
+      observe: 'response',
     });
   }
 }
