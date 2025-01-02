@@ -8,6 +8,7 @@ import { ThemeSwitchComponent } from './theme-switch/theme-switch.component';
 import { NoContentComponent } from './no-content/no-content.component';
 import { BreadcrumbsComponent } from './breadcrumbs/breadcrumbs.component';
 import { TuiBreadcrumbsModule } from '@taiga-ui/kit';
+import { SideNavComponent } from './side-nav/side-nav.component';
 
 @NgModule({
   declarations: [
@@ -16,18 +17,16 @@ import { TuiBreadcrumbsModule } from '@taiga-ui/kit';
     ThemeSwitchComponent,
     NoContentComponent,
     BreadcrumbsComponent,
+    SideNavComponent,
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    TuiBreadcrumbsModule,
-  ],
+  imports: [CommonModule, RouterModule, TuiBreadcrumbsModule],
   exports: [
     MenuPageComponent,
     PageNotFoundComponent,
     ThemeSwitchComponent,
     NoContentComponent,
     BreadcrumbsComponent,
-  ]
+    SideNavComponent,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}
